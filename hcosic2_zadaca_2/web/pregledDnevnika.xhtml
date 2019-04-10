@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{p['index.veza_pregledDnevnika']}</title>
+        <f:view locale="#{lokalizacija.locale}"></f:view>
+        <h:outputStylesheet library="css" name="osnovna.css" />
+    </h:head>
+    <h:body>
+        <header>
+            <h:form>
+                <h:commandLink action="#{slanjePoruke.promjenaJezika()}" 
+                               value="#{p['index.naslov']}" />
+                &nbsp;
+                <h:commandLink action="#{lokalizacija.saljiPoruku()}" 
+                               value="#{p['index.veza_slanjePoruke']}" />
+                &nbsp;
+                <h:commandLink action="#{lokalizacija.pregledPoruka()}" 
+                               value="#{p['index.veza_pregledPoruke']}" />
+            </h:form>
+            <h1>#{p['index.veza_pregledDnevnika']}</h1>
+            <h:form>
+                <h:outputLabel value="#{p['index.od']}" />
+                <h:inputText value="#{pregledDnevnika.odPrikazanihZapisa}"/><br/><br/>
+                <h:outputLabel value="#{p['index.do']}" />
+                <h:inputText value="#{pregledDnevnika.doPrikazanihZapisa}"/><br/><br/>
+                &nbsp;
+                <h:commandButton value="#{p['index.prikazi']}"  action="#{pregledDnevnika.promjenaIntervala()}"/>
+            </h:form><br/>
+            <h:form>
+                <h:dataTable class="table table-bordered" value="#{pregledDnevnika.listaDnevnika}" var="m">
+                    <h:column>
+                        <f:facet name="header">#{p['index.id']}</f:facet>
+                        <h:outputText value="#{m.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{p['index.salje_tablica']}</f:facet>
+                        <h:outputText value="#{m.sadrzaj}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{p['index.vrijeme_tablica']}</f:facet>
+                        <h:outputText value="#{m.vrijemeZapisa}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form><br/>
+            <h:form>
+                <h:outputText value="#{p['index.ukupno_poruka']}"/>
+                <h:outputText value="#{pregledDnevnika.ukupanBrojZapisa}"/>
+                &nbsp;
+                <h:commandButton value="#{p['index.prethodne']}"/>
+                &nbsp;
+                <h:commandButton value="#{p['index.sljedece']}"  />
+            </h:form>
+        </header>
+    </h:body>
+</html>
+

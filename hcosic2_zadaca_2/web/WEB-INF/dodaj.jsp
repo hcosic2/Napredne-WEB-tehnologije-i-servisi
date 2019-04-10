@@ -1,0 +1,1 @@
+{"id": 4, "komanda": "dodaj", "naziv": "Senzor RFID", "korisnik": "pero", "vrijeme": "2018.04.09 17:21:56"}
