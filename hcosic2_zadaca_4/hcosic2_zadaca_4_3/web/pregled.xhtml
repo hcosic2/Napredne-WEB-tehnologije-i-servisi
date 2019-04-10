@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./predlozak.xhtml">
+
+            <ui:define name="top">
+                Pregled parkirališta i prognoza vremena
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:outputLabel for="id" value="Id: "/>
+                    <h:inputText class="input" id="id" value="#{pregled.id}"/>
+                    <h:commandButton class="btn" value="Dodaj" action="#{pregled.dodajParkiraliste()}">
+                        <f:ajax execute="id naziv adresa" render="id naziv adresa poruka popisparking upisibtn" />
+                    </h:commandButton><br/><br/>
+                    <h:outputLabel for="naziv" value="Naziv: "/>
+                    <h:inputText class="input2" id="naziv" value="#{pregled.naziv}"/><br/><br/>
+                    <h:outputLabel for="adresa" value="Adresa: "/>
+                    <h:inputText id="adresa" value="#{pregled.adresa}"/>
+                    <h:commandButton id="upisibtn" class="btn" value="Upiši" style="#{pregled.upisi ? '' : 'display: none;'}" action="#{pregled.upisiParkiraliste()}">
+                        <f:ajax execute="id naziv adresa upisi popisparking" render="id naziv adresa poruka popisparking upisibtn" />
+                    </h:commandButton><br/><br/>
+                    <h:inputText readonly="readonly" id="poruka" style="color: red" size="70" value="#{pregled.poruka}"/><br/><br/>
+                    <h:outputLabel for="popisparking" value="Parkiralista: "/><br/>
+                    <h:selectManyListbox id="popisparking" size="5" value="#{pregled.popisParkingOdabrano}" >
+                        <f:selectItems value="#{pregled.popisParking}" var="p" 
+                                       itemLabel="#{p.labela}" itemValue="#{p.vrijednost}" />
+                    </h:selectManyListbox>
+                    &nbsp;
+                    <h:commandButton value="Preuzmi" action="#{pregled.preuzmiParkiralista()}">
+                        <f:ajax execute="popisparking" render="popisparkingmeteo popisparking id naziv adresa upisibtn poruka" />
+                    </h:commandButton>
+                    &nbsp;
+                    <h:commandButton value="Vrati" action="#{pregled.vratiParkiralista()}">
+                        <f:ajax execute="popisparkingmeteo" render="popisparkingmeteo popisparking id naziv adresa upisibtn poruka" />
+                    </h:commandButton>
+                    &nbsp;
+                    <h:commandButton value="Ažuriraj" action="#{pregled.azurirajParkiraliste()}">
+                        <f:ajax execute="popisparking" render="id naziv adresa poruka upisi upisibtn" />
+                    </h:commandButton>
+                    &nbsp;
+                    <h:selectManyListbox id="popisparkingmeteo" size="5" value="#{pregled.popisParkingMeteoOdabrana}" >
+                        <f:selectItems value="#{pregled.popisParkingMeto}" var="p" 
+                                       itemLabel="#{p.labela}" itemValue="#{p.vrijednost}" />
+                    </h:selectManyListbox>
+                    &nbsp;
+                    <h:commandButton id="prognoza" value="#{pregled.prognozaGumb}" action="#{pregled.preuzmiMeteoPodatke()}">
+                        <f:ajax execute="popisparkingmeteo id adresa naziv" render="popismeteopodaci meteopodaci prognoza upisibtn meteo poruka" />
+                    </h:commandButton><br/><br/>
+                    <h:panelGrid id="meteo" style="#{pregled.meteo ? '' : 'display: none;'}">
+                    <h:outputLabel for="pregledprognoza" value="Pregled prognoza: "/><br/><br/>
+                        <h:dataTable id="meteopodaci" value="#{pregled.popisMeteoPodaci}" var="mp">
+                            <h:column>
+                                <f:facet name="header">ID</f:facet>
+                                <h:outputText value="#{mp.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Parkiraliste</f:facet>
+                                <h:outputText value="#{pregled.naziv}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Adresa</f:facet>
+                                <h:outputText value="#{pregled.adresa}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Datum</f:facet>
+                                <h:outputText value="#{mp.prognoza.lastUpdate}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Temperatura</f:facet>
+                                <h:outputText value="#{mp.prognoza.temperatureValue}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Vlaga</f:facet>
+                                <h:outputText value="#{mp.prognoza.humidityValue}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Temperatura max</f:facet>
+                                <h:outputText value="#{mp.prognoza.temperatureMax}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Temperatura min</f:facet>
+                                <h:outputText value="#{mp.prognoza.temperatureMin}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Brzina vjetra</f:facet>
+                                <h:outputText value="#{mp.prognoza.windSpeedValue}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Tlak zraka</f:facet>
+                                <h:outputText value="#{mp.prognoza.pressureValue}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
