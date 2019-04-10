@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.6-1b01  svn-revision#13094. --><xs:schema xmlns:tns="http://serveri.ws.hcosic2.nwtis.foi.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://serveri.ws.hcosic2.nwtis.foi.org/">
+
+<xs:element name="dajMinMaxTemp" type="tns:dajMinMaxTemp"/>
+
+<xs:element name="dajMinMaxTempResponse" type="tns:dajMinMaxTempResponse"/>
+
+<xs:element name="dajSvaParkiralista" type="tns:dajSvaParkiralista"/>
+
+<xs:element name="dajSvaParkiralistaResponse" type="tns:dajSvaParkiralistaResponse"/>
+
+<xs:element name="dajSveMeteoPodatke" type="tns:dajSveMeteoPodatke"/>
+
+<xs:element name="dajSveMeteoPodatkeResponse" type="tns:dajSveMeteoPodatkeResponse"/>
+
+<xs:element name="dajVazeceMeteoPodatke" type="tns:dajVazeceMeteoPodatke"/>
+
+<xs:element name="dajVazeceMeteoPodatkeResponse" type="tns:dajVazeceMeteoPodatkeResponse"/>
+
+<xs:element name="dajZadnjeMeteoPodatke" type="tns:dajZadnjeMeteoPodatke"/>
+
+<xs:element name="dajZadnjeMeteoPodatkeResponse" type="tns:dajZadnjeMeteoPodatkeResponse"/>
+
+<xs:element name="dodajParkiraliste" type="tns:dodajParkiraliste"/>
+
+<xs:element name="dodajParkiralisteResponse" type="tns:dodajParkiralisteResponse"/>
+
+<xs:element name="dohvatiPodatkeParkiraliste" type="tns:dohvatiPodatkeParkiraliste"/>
+
+<xs:element name="dohvatiPodatkeParkiralisteResponse" type="tns:dohvatiPodatkeParkiralisteResponse"/>
+
+<xs:complexType name="dodajParkiraliste">
+<xs:sequence>
+<xs:element name="arg0" type="tns:parkiraliste" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="parkiraliste">
+<xs:sequence>
+<xs:element name="adresa" type="xs:string" minOccurs="0"/>
+<xs:element name="geoloc" type="tns:lokacija" minOccurs="0"/>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="naziv" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="lokacija">
+<xs:sequence>
+<xs:element name="latitude" type="xs:string" minOccurs="0"/>
+<xs:element name="longitude" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dodajParkiralisteResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="dajVazeceMeteoPodatke">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajVazeceMeteoPodatkeResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:meteoPodaci" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="meteoPodaci">
+<xs:sequence>
+<xs:element name="cloudsName" type="xs:string" minOccurs="0"/>
+<xs:element name="cloudsValue" type="xs:int"/>
+<xs:element name="humidityUnit" type="xs:string" minOccurs="0"/>
+<xs:element name="humidityValue" type="xs:float" minOccurs="0"/>
+<xs:element name="lastUpdate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="precipitationMode" type="xs:string" minOccurs="0"/>
+<xs:element name="precipitationUnit" type="xs:string" minOccurs="0"/>
+<xs:element name="precipitationValue" type="xs:float" minOccurs="0"/>
+<xs:element name="pressureUnit" type="xs:string" minOccurs="0"/>
+<xs:element name="pressureValue" type="xs:float" minOccurs="0"/>
+<xs:element name="sunRise" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="sunSet" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="temperatureMax" type="xs:float" minOccurs="0"/>
+<xs:element name="temperatureMin" type="xs:float" minOccurs="0"/>
+<xs:element name="temperatureUnit" type="xs:string" minOccurs="0"/>
+<xs:element name="temperatureValue" type="xs:float" minOccurs="0"/>
+<xs:element name="visibility" type="xs:string" minOccurs="0"/>
+<xs:element name="weatherIcon" type="xs:string" minOccurs="0"/>
+<xs:element name="weatherNumber" type="xs:int"/>
+<xs:element name="weatherValue" type="xs:string" minOccurs="0"/>
+<xs:element name="windDirectionCode" type="xs:string" minOccurs="0"/>
+<xs:element name="windDirectionName" type="xs:string" minOccurs="0"/>
+<xs:element name="windDirectionValue" type="xs:float" minOccurs="0"/>
+<xs:element name="windSpeedName" type="xs:string" minOccurs="0"/>
+<xs:element name="windSpeedValue" type="xs:float" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajMinMaxTemp">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+<xs:element name="arg2" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajMinMaxTempResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:meteoPodaci" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajSveMeteoPodatke">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+<xs:element name="arg2" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajSveMeteoPodatkeResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:meteoPodaci" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajSvaParkiralista">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="dajSvaParkiralistaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:parkiraliste" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dohvatiPodatkeParkiraliste">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dohvatiPodatkeParkiralisteResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:parkiraliste" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajZadnjeMeteoPodatke">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dajZadnjeMeteoPodatkeResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:meteoPodaci" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
