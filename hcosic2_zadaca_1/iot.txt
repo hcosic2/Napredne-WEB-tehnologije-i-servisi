@@ -1,0 +1,3 @@
+id.uredaja=1
+naziv.uredaja=senzor za vlagu
+cijena.uredaja=800

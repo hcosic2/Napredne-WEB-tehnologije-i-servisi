@@ -1,0 +1,15 @@
+#hcosic2
+#Tue Mar 13 20:02:11 CET 2018
+port=8000
+maks.broj.zahtjeva.cekanje=10
+maks.broj.radnih.dretvi=2
+interval.za.serijalizaciju=10
+datoteka.evidencije.rada=NWTiS_hcosic2_evidencija_rada.bin
+skup.kodova.znakova=UTF-8
+admin.0.hcosic2=123456
+admin.1.imaric=FOI_5678
+admin.2.pero=123456
+admin.3.mato=654321
+admin.4.iva=13579
+admin.5.helga=24680
+admin.6.goga=192837
